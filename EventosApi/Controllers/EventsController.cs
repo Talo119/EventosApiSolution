@@ -60,7 +60,7 @@ namespace EventosApi.Controllers
         }
 
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetEvent(int id)
         {
             try
@@ -118,7 +118,7 @@ namespace EventosApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, UpdateEvent updateEvent)
         {
             try
@@ -146,7 +146,7 @@ namespace EventosApi.Controllers
             }
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
             try

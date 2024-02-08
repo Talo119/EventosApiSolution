@@ -4,19 +4,18 @@ using Events.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-var MyAllowSpecificOrigins = "myOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(MyAllowSpecificOrigins,
+    options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("https://localhost:44305")
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
+            policy.WithOrigins("*")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
         });
 });
 
@@ -45,7 +44,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
